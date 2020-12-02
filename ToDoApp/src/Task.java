@@ -9,14 +9,15 @@ import javax.swing.JButton;
 import javax.swing.JTextPane;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
 import java.awt.event.ActionEvent;
 
 public class Task extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JTextField textField_3;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
@@ -24,8 +25,9 @@ public class Task extends JFrame {
 	private JTextPane txtpnTask;
 	private JTextPane txtpnTask_1;
 	private JTextPane txtpnTask_2;
-	private JTextField textField_3;
 
+
+	String tiedosto = "src/Taskit.txt";
 	/**
 	 * Launch the application.
 	 */
@@ -69,7 +71,7 @@ public class Task extends JFrame {
 				
 				
 				ToDoApp.textField.setText(textField_1.getText());
-				
+				kirjoitaTiedostoon(textField_1.getText(), tiedosto);
 				
 			}
 		});
@@ -126,5 +128,18 @@ public class Task extends JFrame {
 		textField_3.setBounds(91, 132, 355, 20);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
+		
+	}
+	
+	public void kirjoitaTiedostoon(String txt, String tiedosto) {
+		try {
+			java.util.Date date = new java.util.Date();
+			FileWriter fwriter = new FileWriter(tiedosto, true);
+			fwriter.write(date.toString() + " Task:  " + txt);
+			fwriter.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
+
