@@ -68,7 +68,7 @@ public class Task extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				
-//				ToDoApp.getTextField().setText(textField.getText());
+				ToDoApp.textField.setText(textField_1.getText());
 				
 				
 			}
@@ -80,7 +80,7 @@ public class Task extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-//+				Task.textField_1.setText(textField_1.getText());
+				ToDoApp.textField_1.setText(textField_2.getText());
 				
 			}
 		});
@@ -91,7 +91,7 @@ public class Task extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-//				Task.textField_2.setText(textField_2.getText());
+				ToDoApp.textField_2.setText(textField_3.getText());
 				
 			}
 		});

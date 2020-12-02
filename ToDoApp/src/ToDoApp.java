@@ -1,6 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import javax.swing.text.JTextComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,9 +18,9 @@ public class ToDoApp extends JFrame {
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	public static JTextField textField;
+	public static JTextField textField_1;
+	public static JTextField textField_2;
 	private JButton btnNewButton_3;
 	private JTextPane txtpnTask;
 	private JTextPane txtpnTask_1;
