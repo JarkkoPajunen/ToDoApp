@@ -10,6 +10,8 @@ import javax.swing.JTextPane;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class Task extends JFrame {
@@ -71,6 +73,9 @@ public class Task extends JFrame {
 				
 				
 				ToDoApp.textField.setText(textField_1.getText());
+//				ToDoApp.textField_3.setDate(sf.format(date));
+
+				
 				kirjoitaTiedostoon(textField_1.getText(), tiedosto);
 				
 			}
@@ -83,6 +88,7 @@ public class Task extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				ToDoApp.textField_1.setText(textField_2.getText());
+				kirjoitaTiedostoon(textField_2.getText(), tiedosto);
 				
 			}
 		});
@@ -94,7 +100,7 @@ public class Task extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				ToDoApp.textField_2.setText(textField_3.getText());
-				
+				kirjoitaTiedostoon(textField_3.getText(), tiedosto);
 			}
 		});
 		btnNewButton_2.setBounds(480, 131, 89, 23);
@@ -130,16 +136,25 @@ public class Task extends JFrame {
 		textField_3.setColumns(10);
 		
 	}
+
 	
 	public void kirjoitaTiedostoon(String txt, String tiedosto) {
 		try {
 			java.util.Date date = new java.util.Date();
 			FileWriter fwriter = new FileWriter(tiedosto, true);
-			fwriter.write(date.toString() + " Task:  " + txt);
+			fwriter.write(date.toString() + " Task:  " + txt + "\n");
 			fwriter.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
+	public void Date()
+	{
+		Date date = new Date();
+		SimpleDateFormat sf = new SimpleDateFormat("dd/MM");
+		sf.format(date);
+	}	
 }
 

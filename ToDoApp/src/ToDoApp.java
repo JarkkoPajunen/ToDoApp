@@ -4,13 +4,19 @@ import javax.swing.text.JTextComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
+import javax.swing.JTree;
+import java.awt.TextArea;
 
 public class ToDoApp extends JFrame {
 
@@ -25,14 +31,14 @@ public class ToDoApp extends JFrame {
 	private JTextPane txtpnTask;
 	private JTextPane txtpnTask_1;
 	private JTextPane txtpnTask_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private static JTextField textField_3;
+	private static JTextField textField_4;
+	private static JTextField textField_5;
 	private JTextPane txtpnCreated;
-	private JTextPane txtpnPreviousTasks;
-	private JList list_1;
 	private Task task = new Task();
-
+	private JButton btnNewButton_4;
+	private TextArea textArea;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -54,7 +60,7 @@ public class ToDoApp extends JFrame {
 	 */
 	public ToDoApp() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 642, 414);
+		setBounds(100, 100, 650, 474);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setForeground(Color.LIGHT_GRAY);
@@ -68,6 +74,7 @@ public class ToDoApp extends JFrame {
 				
 				textField.setText("");
 				textField_3.setText("");
+				
 				
 			}
 		});
@@ -145,16 +152,19 @@ public class ToDoApp extends JFrame {
 		contentPane.add(txtpnTask_2);
 		
 		textField_3 = new JTextField();
+		textField_3.setEditable(false);
 		textField_3.setBounds(439, 91, 68, 21);
 		contentPane.add(textField_3);
 		textField_3.setColumns(10);
 		
 		textField_4 = new JTextField();
+		textField_4.setEditable(false);
 		textField_4.setBounds(439, 130, 68, 21);
 		contentPane.add(textField_4);
 		textField_4.setColumns(10);
 		
 		textField_5 = new JTextField();
+		textField_5.setEditable(false);
 		textField_5.setBounds(439, 167, 68, 20);
 		contentPane.add(textField_5);
 		textField_5.setColumns(10);
@@ -166,15 +176,35 @@ public class ToDoApp extends JFrame {
 		txtpnCreated.setBounds(447, 59, 48, 20);
 		contentPane.add(txtpnCreated);
 		
-		txtpnPreviousTasks = new JTextPane();
-		txtpnPreviousTasks.setText("Previous tasks");
-		txtpnPreviousTasks.setBounds(274, 218, 80, 20);
-		contentPane.add(txtpnPreviousTasks);
 		
-	
-		list_1 = new JList();
-		list_1.setBackground(new Color(255, 240, 245));
-		list_1.setBounds(68, 249, 480, 115);
-		contentPane.add(list_1);
+		
+		btnNewButton_4 = new JButton("Previous tasks");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				  try {
+					   FileReader reader = new FileReader( "scr/Taskit.txt" );
+	                   BufferedReader br = new BufferedReader(reader);
+				       String str;
+				       while ((str = br.readLine()) != null) {
+				       textArea.append("\n"+str);
+				   }
+				 } catch (Exception e) {
+				  } finally {
+				    try
+				    { BufferedReader in = null;
+				    in.close(); } catch (Exception ex) { }
+				    }
+				
+            }
+        });
+		
+		btnNewButton_4.setBounds(163, 11, 130, 49);
+		contentPane.add(btnNewButton_4);
+		
+		textArea = new TextArea();
+		textArea.setEditable(false);
+		textArea.setBounds(68, 218, 483, 199);
+		contentPane.add(textArea);
 	}
 }
+
