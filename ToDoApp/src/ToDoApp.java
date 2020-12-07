@@ -13,10 +13,12 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JTree;
 import java.awt.TextArea;
+import javax.swing.JTextArea;
 
 public class ToDoApp extends JFrame {
 
@@ -37,7 +39,9 @@ public class ToDoApp extends JFrame {
 	private JTextPane txtpnCreated;
 	private Task task = new Task();
 	private JButton btnNewButton_4;
-	private TextArea textArea;
+	private JTextArea textArea;
+	
+
 	
 	/**
 	 * Launch the application.
@@ -74,6 +78,7 @@ public class ToDoApp extends JFrame {
 				
 				textField.setText("");
 				textField_3.setText("");
+				
 				
 				
 			}
@@ -182,17 +187,19 @@ public class ToDoApp extends JFrame {
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				  try {
-					   FileReader reader = new FileReader( "scr/Taskit.txt" );
+					   String str;
+					   FileReader reader = new FileReader("scr/Taskit.txt");
 	                   BufferedReader br = new BufferedReader(reader);
-				       String str;
 				       while ((str = br.readLine()) != null) {
-				       textArea.append("\n"+str);
+	 	   		       textArea.append("\n"+str);
 				   }
+				       
 				 } catch (Exception e) {
 				  } finally {
 				    try
 				    { BufferedReader in = null;
 				    in.close(); } catch (Exception ex) { }
+				    
 				    }
 				
             }
@@ -201,9 +208,9 @@ public class ToDoApp extends JFrame {
 		btnNewButton_4.setBounds(163, 11, 130, 49);
 		contentPane.add(btnNewButton_4);
 		
-		textArea = new TextArea();
-		textArea.setEditable(false);
-		textArea.setBounds(68, 218, 483, 199);
+		textArea = new JTextArea();
+		textArea.setBackground(Color.LIGHT_GRAY);
+		textArea.setBounds(68, 242, 439, 157);
 		contentPane.add(textArea);
 	}
 }

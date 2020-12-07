@@ -4,12 +4,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.JTextComponent;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.awt.event.ActionEvent;
@@ -27,8 +29,8 @@ public class Task extends JFrame {
 	private JTextPane txtpnTask;
 	private JTextPane txtpnTask_1;
 	private JTextPane txtpnTask_2;
-
-
+	Date date = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("dd/MM");
 	String tiedosto = "src/Taskit.txt";
 	/**
 	 * Launch the application.
@@ -71,10 +73,9 @@ public class Task extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
+			
 				ToDoApp.textField.setText(textField_1.getText());
-//				ToDoApp.textField_3.setDate(sf.format(date));
-
+				ToDoApp.textField.setText(textField_3.setText(sf.format(date)));
 				
 				kirjoitaTiedostoon(textField_1.getText(), tiedosto);
 				
@@ -148,13 +149,9 @@ public class Task extends JFrame {
 			e.printStackTrace();
 		}
 		
-		
 	}
-	public void Date()
-	{
-		Date date = new Date();
-		SimpleDateFormat sf = new SimpleDateFormat("dd/MM");
-		sf.format(date);
-	}	
-}
+	
+		
+}	
+
 
