@@ -75,8 +75,7 @@ public class Task extends JFrame {
 				
 			
 				ToDoApp.textField.setText(textField_1.getText());
-				ToDoApp.textField.setText(textField_3.setText(sf.format(date)));
-				
+				ToDoApp.textField_3.setText(sf.format(date));
 				kirjoitaTiedostoon(textField_1.getText(), tiedosto);
 				
 			}
@@ -89,6 +88,7 @@ public class Task extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				ToDoApp.textField_1.setText(textField_2.getText());
+				ToDoApp.textField_4.setText(sf.format(date));
 				kirjoitaTiedostoon(textField_2.getText(), tiedosto);
 				
 			}
@@ -101,6 +101,7 @@ public class Task extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				ToDoApp.textField_2.setText(textField_3.getText());
+				ToDoApp.textField_5.setText(sf.format(date));
 				kirjoitaTiedostoon(textField_3.getText(), tiedosto);
 			}
 		});
@@ -143,15 +144,15 @@ public class Task extends JFrame {
 		try {
 			java.util.Date date = new java.util.Date();
 			FileWriter fwriter = new FileWriter(tiedosto, true);
-			fwriter.write(date.toString() + " Task:  " + txt + "\n");
+			fwriter.write(sf.format(date) + " Task:  " + txt + "\n");
 			fwriter.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 	}
-	
-		
+//	sf.format(date)
+//	fwriter.write(date.toString() + " Task:  " + txt + "\n");
 }	
 
 

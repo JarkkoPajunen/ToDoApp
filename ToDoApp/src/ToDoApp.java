@@ -33,13 +33,15 @@ public class ToDoApp extends JFrame {
 	private JTextPane txtpnTask;
 	private JTextPane txtpnTask_1;
 	private JTextPane txtpnTask_2;
-	private static JTextField textField_3;
-	private static JTextField textField_4;
-	private static JTextField textField_5;
+	public static JTextField textField_3;
+	public static JTextField textField_4;
+	public static JTextField textField_5;
 	private JTextPane txtpnCreated;
 	private Task task = new Task();
 	private JButton btnNewButton_4;
 	private JTextArea textArea;
+	String tiedosto = "src/Taskit.txt";
+
 	
 
 	
@@ -188,8 +190,9 @@ public class ToDoApp extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				  try {
 					   String str;
-					   FileReader reader = new FileReader("scr/Taskit.txt");
-	                   BufferedReader br = new BufferedReader(reader);
+					   FileReader reader = new FileReader(tiedosto);
+				       BufferedReader br = new BufferedReader(reader);
+
 				       while ((str = br.readLine()) != null) {
 	 	   		       textArea.append("\n"+str);
 				   }

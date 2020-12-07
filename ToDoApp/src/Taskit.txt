@@ -1,12 +1,1 @@
-Thu Dec 03 11:54:27 EET 2020 Task:  hrei
-Thu Dec 03 11:54:27 EET 2020 Task:  fd
-Thu Dec 03 11:54:27 EET 2020 Task:  gds
-Thu Dec 03 13:41:14 EET 2020 Task:  hei
-Thu Dec 03 13:44:10 EET 2020 Task:  
-Thu Dec 03 13:44:11 EET 2020 Task:  jh
-Mon Dec 07 10:51:12 EET 2020 Task:  onkose vai eikö
-Mon Dec 07 10:51:20 EET 2020 Task:  ass
-Mon Dec 07 10:51:21 EET 2020 Task:  on 
-Mon Dec 07 10:58:17 EET 2020 Task:  
-Mon Dec 07 10:58:19 EET 2020 Task:  saa
-Mon Dec 07 11:42:16 EET 2020 Task:  jeee
+07/12 Task:  jee
