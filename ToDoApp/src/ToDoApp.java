@@ -38,9 +38,11 @@ public class ToDoApp extends JFrame {
 	public static JTextField textField_5;
 	private JTextPane txtpnCreated;
 	private Task task = new Task();
+	private ImpToDo imptodo = new ImpToDo();
 	private JButton btnNewButton_4;
 	private JTextArea textArea;
 	String tiedosto = "src/Taskit.txt";
+	private JButton btnNewButton_5;
 
 	
 
@@ -213,8 +215,18 @@ public class ToDoApp extends JFrame {
 		
 		textArea = new JTextArea();
 		textArea.setBackground(Color.LIGHT_GRAY);
-		textArea.setBounds(68, 242, 439, 157);
+		textArea.setBounds(68, 226, 439, 173);
 		contentPane.add(textArea);
+		
+		btnNewButton_5 = new JButton("ToDo");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				imptodo.setVisible(true);
+			}
+		});
+		btnNewButton_5.setBounds(317, 23, 97, 25);
+		contentPane.add(btnNewButton_5);
 	}
 }
 

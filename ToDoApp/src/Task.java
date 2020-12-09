@@ -109,24 +109,27 @@ public class Task extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		txtpnCreateATask = new JTextPane();
-		txtpnCreateATask.setBackground(Color.WHITE);
+		txtpnCreateATask.setBackground(Color.CYAN);
 		txtpnCreateATask.setText("Create a task");
-		txtpnCreateATask.setBounds(177, 0, 80, 20);
+		txtpnCreateATask.setBounds(213, 7, 89, 20);
 		contentPane.add(txtpnCreateATask);
 		
 		txtpnTask = new JTextPane();
+		txtpnTask.setBackground(Color.CYAN);
 		txtpnTask.setEditable(false);
 		txtpnTask.setText("Task 1");
 		txtpnTask.setBounds(21, 40, 46, 20);
 		contentPane.add(txtpnTask);
 		
 		txtpnTask_1 = new JTextPane();
+		txtpnTask_1.setBackground(Color.CYAN);
 		txtpnTask_1.setEditable(false);
 		txtpnTask_1.setText("Task 2");
 		txtpnTask_1.setBounds(21, 88, 46, 20);
 		contentPane.add(txtpnTask_1);
 		
 		txtpnTask_2 = new JTextPane();
+		txtpnTask_2.setBackground(Color.CYAN);
 		txtpnTask_2.setEditable(false);
 		txtpnTask_2.setText("Task 3");
 		txtpnTask_2.setBounds(21, 132, 46, 20);
@@ -142,7 +145,7 @@ public class Task extends JFrame {
 	
 	public void kirjoitaTiedostoon(String txt, String tiedosto) {
 		try {
-			java.util.Date date = new java.util.Date();
+//			java.util.Date date = new java.util.Date();
 			FileWriter fwriter = new FileWriter(tiedosto, true);
 			fwriter.write(sf.format(date) + " Task:  " + txt + "\n");
 			fwriter.close();
