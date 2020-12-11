@@ -154,8 +154,5 @@ public class Task extends JFrame {
 		}
 		
 	}
-//	sf.format(date)
-//	fwriter.write(date.toString() + " Task:  " + txt + "\n");
+
 }	
-
-

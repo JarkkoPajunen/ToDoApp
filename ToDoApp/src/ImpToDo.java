@@ -1,12 +1,22 @@
+import java.io.FileWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 
  
 
 public class ImpToDo extends JFrame {
 
-	
+	Date date = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("dd/MM");
+	static String tiedosto = "src/Taskit.txt";
  
 
     public static void main(String[] args) {        // miten saadaan nämä koodit Jframeen? ohjelman "pohjalleko vaan"? 
@@ -18,8 +28,23 @@ public class ImpToDo extends JFrame {
         System.out.println("Syötä Tärkeysaste: " + " 1 = Ei kiireinen. " + " 2 = Kiireinen. " + " 3 = Erittäin kiireinen. ");
         tärkeys = Integer.parseInt(in.nextLine());
         
-        ToDo1.setTärkeysArvo(tärkeys);
-        ToDo1.printData();
+ //       ToDo1.setTärkeysArvo(tärkeys);
+ //       ToDo1.printData();
+        
+        try {
+            ToDo1.setTärkeysArvo(tärkeys);
+            ToDo1.printData();
+        	PrintStream myconsole = new PrintStream(tiedosto);
+        	System.setOut(myconsole);
+        	
+        } catch (FileNotFoundException fx) {
+        	System.out.println(fx);
+        }
+        
+        
+        
+        
+        
     }
 
 	public void setVisible(boolean b) {
@@ -68,6 +93,9 @@ class ToDo
     class ImprovedToDo extends ToDo //subclass periytynyt superclassista
     {
         private int tärkeys;
+		private Object date;
+		private DateFormat sf;
+		private String tiedosto;
         
         public ImprovedToDo()    //default constructor
         {
@@ -113,7 +141,26 @@ class ToDo
         @Override
         public void printData()
         {
+        	
         super.printData(); // Hakee printdata metodin ToDo Classista
             System.out.println("Tärkeys: " + tärkeys);
+        
+
         }
-    }
+    
+    public void kirjoitaTiedostoon(String tiedosto) {
+		try {
+//			java.util.Date date = new java.util.Date();
+			FileWriter fwriter = new FileWriter(tiedosto, true);
+			fwriter.write(sf.format(date) + " Task:  " + "\n");
+			fwriter.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+   
+    
+}
+
+
