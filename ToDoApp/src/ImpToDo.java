@@ -9,37 +9,42 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 
  
 
 public class ImpToDo extends JFrame {
 
+	
+	
+	
 	Date date = new Date();
 	SimpleDateFormat sf = new SimpleDateFormat("dd/MM");
 	static String tiedosto = "src/Taskit.txt";
  
 
     public static void main(String[] args) {        // miten saadaan nämä koodit Jframeen? ohjelman "pohjalleko vaan"? 
-        ImprovedToDo ToDo1 = new ImprovedToDo("Imuroi", "Koti", 3);
-        
-        Scanner in = new Scanner(System.in);
-        
-        int tärkeys;
-        System.out.println("Syötä Tärkeysaste: " + " 1 = Ei kiireinen. " + " 2 = Kiireinen. " + " 3 = Erittäin kiireinen. ");
-        tärkeys = Integer.parseInt(in.nextLine());
-        
- //       ToDo1.setTärkeysArvo(tärkeys);
- //       ToDo1.printData();
-        
-        try {
-            ToDo1.setTärkeysArvo(tärkeys);
-            ToDo1.printData();
-        	PrintStream myconsole = new PrintStream(tiedosto);
-        	System.setOut(myconsole);
-        	
-        } catch (FileNotFoundException fx) {
-        	System.out.println(fx);
-        }
+    	File file = new File("out.txt");        //created a File object called file   
+//        FileWriter fw = new FileWriter(file);    // created a FileWriter object called fw
+//        PrintWriter pw = new PrintWriter(fw);    //created a PrintWriter object called pw
+       
+        SubTehtävä ToDo1 = new SubTehtävä("Imuroi", "Kotona", "Tärkeä"); // Luodaan SubClassilla Tehtävä. Syötetään 3 eri parametriä (kaikki String muodossa).
+        SubTehtävä ToDo2 = new SubTehtävä ("Tee Olio projektia", "Koulussa", "Todella tärkeä");
+//        pw.println(ToDo2); // tulostaa subTehtävä, ei samaa kuin consolissa.
+//        pw.println(ToDo1);
+//        pw.close();
+       
+        ToDo1.printtaaData(); // printtaa consoliin tiedot, miten nämä saa textArea Tehtävät sisälle?
+        ToDo2.printtaaData(); //
+//        try {
+//            ToDo1.setTärkeysArvo(tärkeys);
+//            ToDo1.printData();
+//        	PrintStream myconsole = new PrintStream(tiedosto);
+//        	System.setOut(myconsole);
+//        	
+//        } catch (FileNotFoundException fx) {
+//        	System.out.println(fx);
+//        }
         
         
         
@@ -58,109 +63,76 @@ public class ImpToDo extends JFrame {
 
  
 
-class ToDo
-    {
-        public String tehtävä;
-        public String paikka;
+class Tehtävä {        //SuperClass
+    public String tehtävä;
+    public String paikka;
     
-        public ToDo() //default Constructor no parameters
+    public Tehtävä()    //default constructor with no parameters
     {
-            tehtävä="";
-            paikka="";
+        tehtävä="";
+        paikka="";
     }
-    //parameterized constructors
-    public ToDo(String teht) //constructor with 1 parameter
-    {
-            tehtävä=teht;
-            paikka="";
+    public Tehtävä (String teht) //one parameter
+    { 
+        tehtävä=teht;
+        paikka="";
     }
-    
-    public ToDo(String tehtävä, String paikka) //constructor with 2 parameters
+    public Tehtävä (String tehtävä, String paikka) // Constructor with 2 parameters
     {
         this.tehtävä=tehtävä;
-        this.paikka=paikka;    
+        this.paikka=paikka;
     }
-        
-    protected void printData() //tulosta consoliin metodi. Protected jotta voidaan periä, muttei muuttaa luokan ulkopuolella
+    protected void printtaaData() //tulosta consoliin metodi. Protected jotta voidaan periä, muttei muuttaa luokan ulkopuolella
     {
             System.out.println("Tehtävä: " + tehtävä);
             System.out.println("Paikka: " + paikka);
     }    
-} //end of SuperClass
+}             //End of SuperClass 
 
  
 
-    class ImprovedToDo extends ToDo //subclass periytynyt superclassista
+class SubTehtävä extends Tehtävä  //SubTehtävä class periytyy Superclass Tehtävästä
     {
-        private int tärkeys;
-		private Object date;
-		private DateFormat sf;
-		private String tiedosto;
-        
-        public ImprovedToDo()    //default constructor
-        {
-            tehtävä="";
-            paikka="";
-            tärkeys= 0;
-        }
-        
-        public ImprovedToDo(String tehtävä) // one parameter
-        {
-            this.tehtävä=tehtävä;
-            paikka="";
-            tärkeys= 0;
-        }
-        
-        public ImprovedToDo(String tehtävä, String paikka, int tärkeys)
-        {
-            this.tehtävä=tehtävä;
-            this.paikka=paikka;
-            this.tärkeys=tärkeys;
-        }
-            
-        public void setTärkeysArvo(int n)
-        {
-            tärkeys=n;
-            if(n==1) 
-            {
-                System.out.println("Ei kiireinen");
-            }
-            if (n==2)
-            {
-                System.out.println("Kiireinen ");
-            }    
-            if (n==3)
-            {
-                System.out.println("Todella kiireinen ");
-            }
-//            else 
-//            {
-//                System.out.println("Syötä numero 1, 2 tai 3");
-//            }
-        }        
-        @Override
-        public void printData()
-        {
-        	
-        super.printData(); // Hakee printdata metodin ToDo Classista
-            System.out.println("Tärkeys: " + tärkeys);
-        
-
-        }
+    private String tärkeys;
     
-    public void kirjoitaTiedostoon(String tiedosto) {
-		try {
-//			java.util.Date date = new java.util.Date();
-			FileWriter fwriter = new FileWriter(tiedosto, true);
-			fwriter.write(sf.format(date) + " Task:  " + "\n");
-			fwriter.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
-   
+    public SubTehtävä()    //DEFAULT constructor
+    {
+        tehtävä="";
+        paikka="";
+        tärkeys="";
+    }
     
+    public SubTehtävä(String tehtävä) // one parameter
+    {
+        this.tehtävä=tehtävä;
+        paikka="";
+        tärkeys= "";
+    }
+    
+    public SubTehtävä(String tehtävä, String paikka, String tärkeys)  // Constructor with 3 parameters. Tästä luodaan tehtävä Consoliin. 
+    {
+        this.tehtävä=tehtävä;
+        this.paikka=paikka;
+        this.tärkeys=tärkeys;
+    }
+        
+    @Override
+    public void printtaaData()
+    {
+        System.out.println("Tärkeys: " + tärkeys);
+        super.printtaaData(); // Hakee printdata metodin ToDo Classista ja lisätään tärkeys erikseen.
+        System.out.println("- - - - - - - - - - - - - - -");
+    }
+    public void kirjoitaTiedostoon(String txt, String filename) {
+        try {
+            // Valinta true lopussa aiheuttaa sen, että ei ylikirjoiteta vaan jatketaan olemassa olevan perään
+            FileWriter fwriter = new FileWriter(filename, true);
+            fwriter.write(txt + "\n");
+            fwriter.close();
+            System.out.println(txt);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
-
 
